@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ibm-festival-demo
+spec:
+  description: ibm-festival-demo
+  destinations:
+    - namespace: schmidt-ibm-festival-dev-java-example
+      server: 'https://kubernetes.default.svc'
+  sourceRepos:
+    - 'https://github.com/schmti/ibm-festival-app-deployment.git'

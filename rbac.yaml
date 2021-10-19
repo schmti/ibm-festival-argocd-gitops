@@ -1,0 +1,10 @@
+# Ask a cluster-admin to create these group for with your user as member for you and your GitOps friends!
+# All members of this group will later have admin rights in your ArgoCD instance
+apiVersion: user.openshift.io/v1
+kind: Group
+metadata:
+  name: own-gitops-admin-group
+users:
+  - <your username>
+  - <your friends username>
+  - <your friends username>
