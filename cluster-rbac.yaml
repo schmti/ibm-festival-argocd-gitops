@@ -1,0 +1,33 @@
+#Unfortunately, ArgoCD requires global read permissions on the cluster resources 
+#even in the vanilla version. Ask a cluster admin politely if he can roll out the following permissions to you.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: argocd-app-controller-view-all
+rules:
+  - verbs:
+      - get
+      - list
+      - watch
+    apiGroups:
+      - '*'
+    resources:
+      - '*'
+  - verbs:
+      - get
+      - list
+    nonResourceURLs:
+      - '*'
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: argocd-list-all
+subjects:
+  - kind: ServiceAccount
+    name: own-argo-cd-instance-argocd-application-controller
+    namespace: ibm-festival-own-argocd
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: argocd-app-controller-view-all

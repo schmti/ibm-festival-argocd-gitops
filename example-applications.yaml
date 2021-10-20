@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-java-app
+  namespace: ibm-festival-own-argocd
+spec:
+  destination:
+    namespace: ibm-festival-test-java-example
+    server: 'https://kubernetes.default.svc'
+  project: ibm-festival-demo
+  source:
+    path: 20_test
+    repoURL: 'https://github.com/schmti/ibm-festival-app-deployment.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: int-java-app
+  namespace: ibm-festival-own-argocd
+spec:
+  destination:
+    namespace: ibm-festival-int-java-example
+    server: 'https://kubernetes.default.svc'
+  project: ibm-festival-demo
+  source:
+    path: 30_int
+    repoURL: 'https://github.com/schmti/ibm-festival-app-deployment.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prod-java-app
+  namespace: ibm-festival-own-argocd
+spec:
+  destination:
+    namespace: ibm-festival-prod-java-example
+    server: 'https://kubernetes.default.svc'
+  project: ibm-festival-demo
+  source:
+    path: 40_prod
+    repoURL: 'https://github.com/schmti/ibm-festival-app-deployment.git'
+    targetRevision: HEAD
+

@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ibm-festival-demo
+  namespace: ibm-festival-own-argocd
+spec:
+  description: ArgoCD AppProject for Java Stages
+  destinations:
+    - namespace: ibm-festival-test-java-example
+      server: 'https://kubernetes.default.svc'
+    - namespace: ibm-festival-int-java-example
+      server: 'https://kubernetes.default.svc'
+    - namespace: ibm-festival-prod-java-example
+      server: 'https://kubernetes.default.svc'
+  sourceRepos:
+    - 'https://github.com/schmti/ibm-festival-app-deployment.git'
+status: {}
